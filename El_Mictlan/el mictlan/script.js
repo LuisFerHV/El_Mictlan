@@ -1,26 +1,18 @@
-/* ---------------------------------------------------------------
-   Accesibilidad: algunos sistemas (por ejemplo Windows con "Efectos
-   de animación" desactivados) piden que las páginas no se muevan.
-   - false = las animaciones SIEMPRE se ven (ideal mientras desarrollas)
-   - true  = se respeta esa opción del sistema (recomendado al publicar)
-   --------------------------------------------------------------- */
+
 const RESPETAR_MOVIMIENTO_REDUCIDO = false;
 
 const reducirMovimiento = RESPETAR_MOVIMIENTO_REDUCIDO &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 if (reducirMovimiento) document.documentElement.classList.add("sin-movimiento");
 
-/* ---------------------------------------------------------------
-   Lluvia que cae en TODA la página. Cambia los números a tu gusto
-   (0 = quitar ese tipo). En celular se usa aproximadamente la mitad.
-   --------------------------------------------------------------- */
+
 const LLUVIA_MUERTOS = {
-    flores: 8,    // flores de cempasúchil
-    petalos: 5,   // pétalos sueltos
-    granos: 12    // granos de café
+    flores: 8,    
+    petalos: 5,   
+    granos: 12    
 };
 const LLUVIA_REYES = {
-    copos: 26     // nieve, cuando el tema de Rosca de Reyes está activo
+    copos: 26    
 };
 
 let toastTimer;
@@ -47,7 +39,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
-/* ---------- Menú móvil ---------- */
+
 function iniciarMenu() {
     const menuToggle = document.getElementById("menuToggle");
     const mainNav = document.getElementById("mainNav");
@@ -60,7 +52,7 @@ function iniciarMenu() {
     });
 }
 
-/* ---------- Desplegable "Experiencias" del menú ---------- */
+
 function iniciarDropdownNav() {
     const dropdown = document.querySelector(".nav-dropdown");
     const boton = document.getElementById("experienciasBtn");
@@ -79,7 +71,7 @@ function iniciarDropdownNav() {
     });
 }
 
-/* ---------- Sombra del header al hacer scroll ---------- */
+
 function iniciarHeader() {
     const header = document.querySelector(".site-header");
     if (!header) return;
@@ -89,7 +81,7 @@ function iniciarHeader() {
     window.addEventListener("scroll", actualizar, { passive: true });
 }
 
-/* ---------- Flor de cempasúchil (SVG con los colores del sitio) ---------- */
+
 function florSVG() {
     let capas = "";
     const anillo = (n, cy, rx, ry, clase, giro) => {
@@ -103,7 +95,7 @@ function florSVG() {
     return `<svg viewBox="0 0 100 100" aria-hidden="true">${capas}<circle class="fl-c" cx="50" cy="50" r="7"/></svg>`;
 }
 
-/* ---------- Taza con vapor en el hero ---------- */
+
 function iniciarTaza() {
     const contenido = document.querySelector(".hero-content");
     if (!contenido) return;
@@ -128,17 +120,18 @@ function iniciarTaza() {
     contenido.prepend(taza);
 }
 
-/* ---------- Token CSRF (lo pone header.php en <meta name="csrf-token">) ---------- */
+
 function tokenCSRF() {
     const meta = document.querySelector('meta[name="csrf-token"]');
     return meta ? meta.content : "";
 }
 
-/* ---------- Agregar al carrito ---------- */
+
+
 function iniciarCarrito() {
     document.querySelectorAll(".add-cart").forEach(button => {
         button.addEventListener("click", async (evento) => {
-            evento.stopPropagation(); // no voltear la tarjeta si está dentro de .ofrenda-card
+            evento.stopPropagation(); 
             const id = button.dataset.id;
             const etiqueta = button.dataset.label = button.dataset.label || button.textContent;
             button.disabled = true;
@@ -184,17 +177,17 @@ function actualizarContador(cantidad) {
 
     count.textContent = cantidad;
     count.classList.remove("bump");
-    void count.offsetWidth; // reinicia la animación si se agrega varias veces seguidas
+    void count.offsetWidth;
     count.classList.add("bump");
 }
 
-/* Una flor sale del botón y vuela hasta el contador del carrito */
+
 function volarAlCarrito(origen, alTerminar) {
     const destino = document.getElementById("cartCount");
     const a = origen.getBoundingClientRect();
     const b = destino ? destino.getBoundingClientRect() : null;
 
-    // Sin animación si no hay carrito visible (menú móvil cerrado) o si se pidió menos movimiento
+
     if (reducirMovimiento || !b || b.width === 0) {
         alTerminar();
         return;
@@ -222,7 +215,7 @@ function volarAlCarrito(origen, alTerminar) {
     };
 }
 
-/* ---------- Voltear tarjetas del menú de Día de Muertos ---------- */
+
 function iniciarVoltea() {
     document.querySelectorAll(".ofrenda-card").forEach(tarjeta => {
         const voltear = () => tarjeta.classList.toggle("flipped");
@@ -237,7 +230,7 @@ function iniciarVoltea() {
     });
 }
 
-/* ---------- Eliminar del carrito ---------- */
+
 function iniciarEliminar() {
     document.querySelectorAll(".remove-form").forEach(form => {
         form.addEventListener("submit", evento => {
@@ -264,7 +257,7 @@ function iniciarEliminar() {
     }
 }
 
-/* ---------- Búsqueda ---------- */
+
 function iniciarBusqueda() {
     const searchBtn = document.getElementById("searchBtn");
     if (!searchBtn) return;
@@ -276,7 +269,7 @@ function iniciarBusqueda() {
     });
 }
 
-/* ---------- Grano de café (SVG con los colores del sitio) ---------- */
+
 function granoSVG() {
     return `<svg viewBox="0 0 100 100" aria-hidden="true">
         <g transform="rotate(25 50 50)">
@@ -286,12 +279,12 @@ function granoSVG() {
     </svg>`;
 }
 
-/* ---------- Lluvia de flores, pétalos y granos de café en toda la página ---------- */
+
 function iniciarLluvia() {
     construirLluvia();
 }
 
-/* Quita la lluvia actual (si había) y pone la que toca según el tema activo */
+
 function construirLluvia() {
     const anterior = document.querySelector(".lluvia");
     if (anterior) anterior.remove();
