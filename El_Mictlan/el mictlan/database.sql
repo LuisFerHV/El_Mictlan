@@ -74,9 +74,7 @@ INSERT INTO productos (nombre,categoria,descripcion,precio,imagen,temporada,dato
 ('Raspados','Bebidas frías','Hielo raspado con sabor a elegir.','35.00','imn/raspados.webp',0,NULL,0),
 ('Frapes','Bebidas frías','Bebida fría de café estilo frappé.','60.00','imn/frapes.jpg',0,NULL,0);
 
--- ---------------------------------------------------------------
--- Roscas de Reyes (solo se muestran en temporada.php, tema "reyes")
--- ---------------------------------------------------------------
+
 INSERT INTO productos (nombre,categoria,descripcion,precio,imagen,temporada,dato_curioso,es_reyes) VALUES
 ('Rosca Tradicional','Comida','Pan de mantequilla con esencia de azahar y naranja, decorado con costra de azúcar, ate de sabores y cerezas confitadas.','150.00','imn/Rosca tradicional.png'
 ,0,'La forma circular u ovalada de la rosca representa el amor infinito a Dios y la corona de los Reyes Magos, simbolizando un ciclo que no tiene principio ni fin.',1),
@@ -103,9 +101,7 @@ INSERT INTO productos (nombre,categoria,descripcion,precio,imagen,temporada,dato
 ,0,'Las tiras de ate de colores, higos y frutos secos no son solo decoración: representan las joyas incrustadas en las coronas de Melchor, Gaspar y Baltasar.',1);
 
 
--- ---------------------------------------------------------------
--- Merch 3D: figuras impresas en 3D, modeladas en Maya (merch.php)
--- ---------------------------------------------------------------
+
 INSERT INTO productos (nombre,categoria,descripcion,precio,imagen,temporada,dato_curioso,es_reyes) VALUES
 ('Figura 3D Catrina El Mictlán','Merch','Catrina de colección, modelada en Maya e impresa en 3D a mano, pintada con los colores de la cafetería.','350.00','imn/logo-elmictlan.jpeg',0,NULL,0),
 ('Figura 3D Calavera de Azúcar','Merch','Calavera decorativa estilo alfeñique, ideal para repisa o escritorio.','280.00','imn/dia-muertos.jpeg',0,NULL,0),
