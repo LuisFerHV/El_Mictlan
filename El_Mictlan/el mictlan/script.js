@@ -432,7 +432,7 @@ function iniciarBusqueda() {
     });
 }
 
-/* ---------- Grano de café (SVG con los colores del sitio) ---------- */
+
 function granoSVG() {
     return `<svg viewBox="0 0 100 100" aria-hidden="true">
         <g transform="rotate(25 50 50)">
@@ -442,12 +442,11 @@ function granoSVG() {
     </svg>`;
 }
 
-/* ---------- Lluvia de flores, pétalos y granos de café en toda la página ---------- */
 function iniciarLluvia() {
     construirLluvia();
 }
 
-/* Quita la lluvia actual (si había) y pone la que toca según el tema activo */
+
 function construirLluvia() {
     const anterior = document.querySelector(".lluvia");
     if (anterior) anterior.remove();
@@ -478,8 +477,7 @@ function construirLluvia() {
 
 function crearPiezaDeLluvia(tipo, i, alto) {
     const el = document.createElement("span");
-    let tam, velocidad; // velocidad en píxeles por segundo
-
+    let tam, velocidad;
     if (tipo === "flor") {
         el.className = "petal flor";
         el.innerHTML = florSVG();
@@ -489,11 +487,11 @@ function crearPiezaDeLluvia(tipo, i, alto) {
         el.className = "petal grano";
         el.innerHTML = granoSVG();
         tam = 20 + Math.random() * 14;
-        velocidad = 110 + Math.random() * 60; // los granos caen más rápido
+        velocidad = 110 + Math.random() * 60;
     } else if (tipo === "copo") {
         el.className = "petal copo";
         tam = 5 + Math.random() * 9;
-        velocidad = 40 + Math.random() * 35; // la nieve cae más despacio
+        velocidad = 40 + Math.random() * 35;
     } else {
         el.className = "petal petal-hoja " + (i % 2 ? "petal-a" : "petal-b");
         tam = 14 + Math.random() * 12;
@@ -504,12 +502,11 @@ function crearPiezaDeLluvia(tipo, i, alto) {
     el.style.setProperty("--x", (Math.random() * 96).toFixed(1) + "%");
     el.style.setProperty("--s", tam.toFixed(1) + "px");
     el.style.setProperty("--d", duracion.toFixed(1) + "s");
-    el.style.setProperty("--delay", (-Math.random() * duracion).toFixed(1) + "s"); // negativo = ya van cayendo al cargar
+    el.style.setProperty("--delay", (-Math.random() * duracion).toFixed(1) + "s");
     el.style.setProperty("--drift", Math.round((Math.random() - 0.5) * 240) + "px");
     return el;
 }
 
-/* ---------- Aparición al hacer scroll (tarjetas y bloques principales) ---------- */
 function iniciarReveal() {
     if (!("IntersectionObserver" in window)) return;
 
@@ -533,7 +530,7 @@ function iniciarReveal() {
                 el.classList.add("visible");
                 observador.unobserve(el);
 
-                // Al terminar se quita la clase para que el hover normal vuelva a funcionar
+
                 setTimeout(() => {
                     el.classList.remove("reveal", "visible");
                     el.style.removeProperty("--rd");
@@ -547,7 +544,7 @@ function iniciarReveal() {
     });
 }
 
-/* ---------- Mapa de México por estados (estados.php) ---------- */
+
 function iniciarMapa() {
     const datosEl = document.getElementById("datosEstados");
     if (!datosEl) return;
@@ -583,7 +580,7 @@ function iniciarMapa() {
     });
 }
 
-/* ---------- Panel de materias (junto al carrito) ---------- */
+
 function iniciarMaterias() {
     const boton = document.getElementById("materiasBtn");
     const overlay = document.getElementById("materiasOverlay");
@@ -874,7 +871,7 @@ function iniciarMaterias() {
     }
 }
 
-/* ---------- Botón de temporada (dentro de temporada.php): Día de Muertos ↔ Día de Reyes ---------- */
+
 function iniciarCambioTemporada() {
     const boton = document.getElementById("cambioTemporadaBtn");
     if (!boton) return;
@@ -893,7 +890,7 @@ function iniciarCambioTemporada() {
     });
 }
 
-/* ---------- Ofrenda Virtual (ofrenda.php) ---------- */
+
 function iniciarOfrenda() {
     const grid = document.getElementById("altarGrid");
     if (!grid) return;
@@ -990,7 +987,7 @@ function iniciarOfrenda() {
     cargar();
 }
 
-/* ---------- Reproductor de la radionovela (radionovela.php) ---------- */
+
 function iniciarRadio() {
     const audio = document.getElementById("radioAudio");
     if (!audio) return;
@@ -1062,7 +1059,7 @@ function iniciarPago() {
         renderPaypal();
     });
 
-    /* ---- Tarjeta: solo una vista bonita + validación básica, nada se manda al servidor ---- */
+
     const nombreInput = document.getElementById("tarjetaNombre");
     const numeroInput = document.getElementById("tarjetaNumero");
     const venceInput = document.getElementById("tarjetaVence");
